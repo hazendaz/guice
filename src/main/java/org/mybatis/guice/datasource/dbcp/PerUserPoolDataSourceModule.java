@@ -1,5 +1,5 @@
 /*
- *    Copyright 2009-2023 the original author or authors.
+ *    Copyright 2009-2025 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -41,25 +41,25 @@ public final class PerUserPoolDataSourceModule extends AbstractModule {
 
   private final Class<? extends Provider<Map<String, Integer>>> perUserDefaultTransactionIsolationProviderClass;
 
-  private final Class<? extends Provider<Map<String, Integer>>> perUserMaxActiveProviderClass;
+  private final Class<? extends Provider<Map<String, Integer>>> perUserMaxTotalProviderClass;
 
   private final Class<? extends Provider<Map<String, Integer>>> perUserMaxIdleProviderClass;
 
-  private final Class<? extends Provider<Map<String, Long>>> perUserMaxWaitMillisProviderClass;
+  private final Class<? extends Provider<Map<String, Long>>> perUserMaxWaitProviderClass;
 
   private PerUserPoolDataSourceModule(
       Class<? extends Provider<Map<String, Boolean>>> perUserDefaultAutoCommitProviderClass,
       Class<? extends Provider<Map<String, Boolean>>> perUserDefaultReadOnlyProviderClass,
       Class<? extends Provider<Map<String, Integer>>> perUserDefaultTransactionIsolationProviderClass,
-      Class<? extends Provider<Map<String, Integer>>> perUserMaxActiveProviderClass,
+      Class<? extends Provider<Map<String, Integer>>> perUserMaxTotalProviderClass,
       Class<? extends Provider<Map<String, Integer>>> perUserMaxIdleProviderClass,
-      Class<? extends Provider<Map<String, Long>>> perUserMaxWaitMillisProviderClass) {
+      Class<? extends Provider<Map<String, Long>>> perUserMaxWaitProviderClass) {
     this.perUserDefaultAutoCommitProviderClass = perUserDefaultAutoCommitProviderClass;
     this.perUserDefaultReadOnlyProviderClass = perUserDefaultReadOnlyProviderClass;
     this.perUserDefaultTransactionIsolationProviderClass = perUserDefaultTransactionIsolationProviderClass;
-    this.perUserMaxActiveProviderClass = perUserMaxActiveProviderClass;
+    this.perUserMaxTotalProviderClass = perUserMaxTotalProviderClass;
     this.perUserMaxIdleProviderClass = perUserMaxIdleProviderClass;
-    this.perUserMaxWaitMillisProviderClass = perUserMaxWaitMillisProviderClass;
+    this.perUserMaxWaitProviderClass = perUserMaxWaitProviderClass;
   }
 
   @Override
@@ -68,9 +68,9 @@ public final class PerUserPoolDataSourceModule extends AbstractModule {
     doBind(perUserDefaultReadOnlyProviderClass, STRING_BOOLEAN_MAP, PerUserDefaultReadOnly.class);
     doBind(perUserDefaultTransactionIsolationProviderClass, STRING_INTEGER_MAP,
         PerUserDefaultTransactionIsolation.class);
-    doBind(perUserMaxActiveProviderClass, STRING_INTEGER_MAP, PerUserMaxTotal.class);
+    doBind(perUserMaxTotalProviderClass, STRING_INTEGER_MAP, PerUserMaxTotal.class);
     doBind(perUserMaxIdleProviderClass, STRING_INTEGER_MAP, PerUserMaxIdle.class);
-    doBind(perUserMaxWaitMillisProviderClass, STRING_LONG_MAP, PerUserMaxWaitMillis.class);
+    doBind(perUserMaxWaitProviderClass, STRING_LONG_MAP, PerUserMaxWait.class);
   }
 
   private <T> void doBind(Class<? extends Provider<T>> providerClass, TypeLiteral<T> typeLiteral,
@@ -88,7 +88,7 @@ public final class PerUserPoolDataSourceModule extends AbstractModule {
 
     private Class<? extends Provider<Map<String, Integer>>> perUserDefaultTransactionIsolationProviderClass;
 
-    private Class<? extends Provider<Map<String, Integer>>> perUserMaxActiveProviderClass;
+    private Class<? extends Provider<Map<String, Integer>>> perUserMaxTotalProviderClass;
 
     private Class<? extends Provider<Map<String, Integer>>> perUserMaxIdleProviderClass;
 
@@ -137,16 +137,16 @@ public final class PerUserPoolDataSourceModule extends AbstractModule {
     }
 
     /**
-     * Sets the per user max active provider class.
+     * Sets the per user max total provider class.
      *
-     * @param perUserMaxActiveProviderClass
-     *          the perUserMaxActiveProviderClass to set
+     * @param perUserMaxTotalProviderClass
+     *          the perUserMaxTotalProviderClass to set
      *
      * @return the builder
      */
     public Builder setPerUserMaxTotalProviderClass(
-        Class<? extends Provider<Map<String, Integer>>> perUserMaxActiveProviderClass) {
-      this.perUserMaxActiveProviderClass = perUserMaxActiveProviderClass;
+        Class<? extends Provider<Map<String, Integer>>> perUserMaxTotalProviderClass) {
+      this.perUserMaxTotalProviderClass = perUserMaxTotalProviderClass;
       return this;
     }
 
@@ -172,7 +172,7 @@ public final class PerUserPoolDataSourceModule extends AbstractModule {
      *
      * @return the builder
      */
-    public Builder setPerUserMaxWaitMillisProviderClass(
+    public Builder setPerUserMaxWaitProviderClass(
         Class<? extends Provider<Map<String, Long>>> perUserMaxWaitProviderClass) {
       this.perUserMaxWaitProviderClass = perUserMaxWaitProviderClass;
       return this;
@@ -185,7 +185,7 @@ public final class PerUserPoolDataSourceModule extends AbstractModule {
      */
     public PerUserPoolDataSourceModule create() {
       return new PerUserPoolDataSourceModule(perUserDefaultAutoCommitProviderClass, perUserDefaultReadOnlyProviderClass,
-          perUserDefaultTransactionIsolationProviderClass, perUserMaxActiveProviderClass, perUserMaxIdleProviderClass,
+          perUserDefaultTransactionIsolationProviderClass, perUserMaxTotalProviderClass, perUserMaxIdleProviderClass,
           perUserMaxWaitProviderClass);
     }
 

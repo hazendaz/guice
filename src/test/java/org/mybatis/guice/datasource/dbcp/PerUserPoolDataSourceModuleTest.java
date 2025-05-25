@@ -102,9 +102,9 @@ class PerUserPoolDataSourceModuleTest {
   }
 
   @Test
-  void configure_PerUserMaxWaitMillis() throws Throwable {
+  void configure_PerUserMaxWait() throws Throwable {
     Injector injector = Guice.createInjector(new PerUserPoolDataSourceModule.Builder()
-        .setPerUserMaxWaitMillisProviderClass(PerUserMaxWaitMillisProvider.class).create());
+        .setPerUserMaxWaitProviderClass(PerUserMaxWaitProvider.class).create());
     PerUserPoolDataSourceProvider provider = injector.getInstance(PerUserPoolDataSourceProvider.class);
 
     PerUserPoolDataSource dataSource = (PerUserPoolDataSource) provider.get();
@@ -146,10 +146,10 @@ class PerUserPoolDataSourceModuleTest {
   public static class PerUserMaxTotalProvider implements Provider<Map<String, Integer>> {
     @Override
     public Map<String, Integer> get() {
-      Map<String, Integer> maxActive = new HashMap<String, Integer>();
-      maxActive.put("test_user", 10);
-      maxActive.put("test_user2", 20);
-      return maxActive;
+      Map<String, Integer> maxTotal = new HashMap<String, Integer>();
+      maxTotal.put("test_user", 10);
+      maxTotal.put("test_user2", 20);
+      return maxTotal;
     }
   }
 
@@ -163,12 +163,12 @@ class PerUserPoolDataSourceModuleTest {
     }
   }
 
-  public static class PerUserMaxWaitMillisProvider implements Provider<Map<String, Long>> {
+  public static class PerUserMaxWaitProvider implements Provider<Map<String, Integer>> {
     @Override
-    public Map<String, Long> get() {
-      Map<String, Long> maxWait = new HashMap<String, Long>();
-      maxWait.put("test_user", 50l);
-      maxWait.put("test_user2", 60l);
+    public Map<String, Integer> get() {
+      Map<String, Integer> maxWait = new HashMap<String, Integer>();
+      maxWait.put("test_user", 50);
+      maxWait.put("test_user2", 60);
       return maxWait;
     }
   }
