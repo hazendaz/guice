@@ -113,7 +113,7 @@
                         <td>int</td>
                     </tr>
                     <tr>
-                        <td>DBCP.maxActive</td>
+                        <td>DBCP.maxTotal</td>
                         <td>false</td>
                         <td>int</td>
                     </tr>
@@ -220,7 +220,7 @@
                         <td>int</td>
                     </tr>
                     <tr>
-                        <td>DBCP.maxActive</td>
+                        <td>DBCP.maxTotal</td>
                         <td>false</td>
                         <td>int</td>
                     </tr>
@@ -397,7 +397,7 @@
                         <td>int</td>
                     </tr>
                     <tr>
-                        <td>DBCP.maxActive</td>
+                        <td>DBCP.maxTotal</td>
                         <td>false</td>
                         <td>int</td>
                     </tr>
@@ -501,7 +501,7 @@ Injector injector = Guice.createInjector(
                     </tr>
                     <tr>
                         <td>Map&lt;String, Integer&gt;</td>
-                        <td>perUserMaxActive</td>
+                        <td>perUserMaxTotal</td>
                     </tr>
                     <tr>
                         <td>Map&lt;String, Integer&gt;</td>
@@ -560,7 +560,7 @@ Injector injector = Guice.createInjector(
                         <td>int</td>
                     </tr>
                     <tr>
-                        <td>DBCP.maxActive</td>
+                        <td>DBCP.maxTotal</td>
                         <td>false</td>
                         <td>int</td>
                     </tr>
