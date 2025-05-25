@@ -34,6 +34,7 @@ class DriverAdapterCPDSProviderTest {
     final String password = "test_password";
     final int loginTimeout = 10;
     final String description = "test_description";
+    final int maxTotal = 20;
     final int maxIdle = 30;
     final int maxOpenPreparedStatements = 40;
     final int minEvictableIdleTimeMillis = 50;
@@ -49,6 +50,7 @@ class DriverAdapterCPDSProviderTest {
         bindConstant().annotatedWith(Names.named("JDBC.password")).to(password);
         bindConstant().annotatedWith(Names.named("JDBC.loginTimeout")).to(loginTimeout);
         bindConstant().annotatedWith(Names.named("DBCP.description")).to(description);
+        bindConstant().annotatedWith(Names.named("DBCP.maxTotal")).to(maxTotal);
         bindConstant().annotatedWith(Names.named("DBCP.maxIdle")).to(maxIdle);
         bindConstant().annotatedWith(Names.named("DBCP.maxOpenPreparedStatements")).to(maxOpenPreparedStatements);
         bindConstant().annotatedWith(Names.named("DBCP.minEvictableIdleTimeMillis")).to(minEvictableIdleTimeMillis);
@@ -84,6 +86,7 @@ class DriverAdapterCPDSProviderTest {
     final String password = "test_password2";
     final int loginTimeout = 11;
     final String description = "test_description2";
+    final int maxTotal = 21;
     final int maxIdle = 31;
     final int maxOpenPreparedStatements = 41;
     final int minEvictableIdleTimeMillis = 51;
@@ -99,6 +102,7 @@ class DriverAdapterCPDSProviderTest {
         bindConstant().annotatedWith(Names.named("JDBC.password")).to(password);
         bindConstant().annotatedWith(Names.named("JDBC.loginTimeout")).to(loginTimeout);
         bindConstant().annotatedWith(Names.named("DBCP.description")).to(description);
+        bindConstant().annotatedWith(Names.named("DBCP.maxTotal")).to(maxTotal);
         bindConstant().annotatedWith(Names.named("DBCP.maxIdle")).to(maxIdle);
         bindConstant().annotatedWith(Names.named("DBCP.maxOpenPreparedStatements")).to(maxOpenPreparedStatements);
         bindConstant().annotatedWith(Names.named("DBCP.minEvictableIdleTimeMillis")).to(minEvictableIdleTimeMillis);
